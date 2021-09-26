@@ -31,7 +31,7 @@ var upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'
 var number = ['1','2','3','4','5','6','7','8','9','0'];
 var special = ['!','@','#','$','%','^','&','*'];
 
-var pwdLength = false;
+
 var pwdLower = false;
 var pwdUpper = false;
 var pwdNumber = false;
@@ -39,40 +39,43 @@ var pwdSpecial = false;
 
 function generatePassword(){
   var pwdLength = window.prompt('Please enter a whole number between 8 and 128 for your password length.'); //password length
-  var pwdLower = window.confirm('Would you like to use lowercase letters?'); //lowerCase
-  var pwdUpper = window.confirm('Would you like to use uppercase letters?'); //upperCase
-  var pwdNumber = window.confirm('Would you like to use numbers?'); //numbers
-  var pwdSpecial = window.confirm('Would you like to use special characters?'); //special characters
 
 //user-proofing valid entries into prompt
-  if(pwdLength < 8 || pwdLength > 128){
+  if(isNaN(pwdLength) || pwdLength < 8 || pwdLength > 128){
     window.alert('Please enter a whole number between 8 and 128.');
     return;
-  } else if (!pwdLower && !pwdUpper && !pwdNumber && !pwdSpecial){
-    window.alert('Please select at least one criteria for your password.');
-    return;
-  } else if(!pwdLength){
-    return;
-  };
+  }
     //logic loop for inputting user selection
+    var pwdLower = window.confirm('Would you like to use lowercase letters?'); //lowerCase
     if(pwdLower){
       pwdArray = pwdArray.concat(lowerCase);
     };
+
+    var pwdUpper = window.confirm('Would you like to use uppercase letters?'); //upperCase
     if(pwdUpper){
       pwdArray = pwdArray.concat(upperCase);
     };
+
+    var pwdNumber = window.confirm('Would you like to use numbers?'); //numbers
     if(pwdNumber){
       pwdArray = pwdArray.concat(number);
     };
+
+    var pwdSpecial = window.confirm('Would you like to use special characters?'); //special characters
     if(pwdSpecial){
       pwdArray = pwdArray.concat(special);
     };
+
+      if (!pwdLower && !pwdUpper && !pwdNumber && !pwdSpecial){
+    window.alert('Please select at least one criteria for your password.');
+    return;
+      }
     console.log(pwdArray);
     console.log(pwdLength);
 
   var finalSel = [];
   //pwdLength = pwdLength * 1; //converts length to a number
-  function characterSel(pwdLength, pwdArray){
+  function characterSel(pwdLength, pwdArray){ // from Sue's code
   for(var i = 0; i < pwdLength; i++){ //from Christa's code
       finalSel.push(pwdArray[Math.floor(Math.random() * pwdArray.length)]);
     };
@@ -80,7 +83,7 @@ function generatePassword(){
     characterSel(pwdLength, pwdArray);
     console.log(finalSel);
     finalSel = finalSel.join('');
-    return finalSel
+    return finalSel;
     
 }
 
