@@ -1,7 +1,7 @@
-# Homework-3 Create A Random Password Generator
+# Create A Random Password Generator
 
 ## Link to Live Site
-https://wtriii.github.io/Homework-3/
+https://wtriii.github.io/Random-Password-Generator-WTRIII/
 
 ## Summary
 
